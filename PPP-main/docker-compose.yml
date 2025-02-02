@@ -1,0 +1,56 @@
+
+services:
+  match_service:
+    build:
+      context: ./backend/match_service
+    ports:
+      - "5001:5001"
+    volumes:
+      - ./backend/match_service:/app
+    command: ["node", "server.js"]
+
+  payment_service:
+    build:
+      context: ./backend/payment_service
+    ports:
+      - "5002:5002"
+    volumes:
+      - ./backend/payment_service:/app
+    command: ["node", "server.js"]
+
+  streaming_service:
+    build:
+      context: ./backend/streaming_service
+    ports:
+      - "5003:5003"
+    volumes:
+      - ./backend/streaming_service:/app
+    command: ["node", "server.js"]
+    
+  ticket_service:
+    build:
+      context: ./backend/ticket_service
+    ports:
+      - "5004:5004"
+    volumes:
+      - ./backend/ticket_service:/app
+    command: ["node", "server.js"]
+    
+  user_service:
+    build:
+      context: ./backend/user_service
+    ports:
+      - "5005:5005"
+    volumes:
+      - ./backend/user_service:/app
+    command: ["node", "server.js"]
+
+  frontend:
+    build:
+      context: ./frontend
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./frontend:/app
+    command: ["npm", "run", "dev"]
+
